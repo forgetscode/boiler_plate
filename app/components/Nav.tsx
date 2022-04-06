@@ -1,6 +1,62 @@
+import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Link from "next/link";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from 'react';
+import { useCreateUserMutation, useLoginMutation, useLogoutMutation } from "../generated/graphql";
+
+
+
+const SessionManager = () => {
+  const { publicKey, connected } = useWallet();
+  const [ register ] = useCreateUserMutation();
+  const [ login ] = useLoginMutation();
+  const [ logout ] = useLogoutMutation();
+  const [ hasConnectedBefore, setHasConnectedBefore ] = useState(false);
+  useEffect(() => {
+      async function processUser() {
+        if (connected) {
+            setHasConnectedBefore(connected);
+          try{
+            const loginStatus = await login({
+                variables:{
+                    publicKey:publicKey!.toString()
+                }
+            });
+            console.log("user logged in");
+          }
+          catch{
+              try{
+                const accountStatus = await register({
+                    variables:{
+                        publicKey:publicKey!.toString()
+                    }
+                })
+                console.log("user registered");
+              }
+              catch{
+                console.log("user already registered");
+              }
+          }
+        } 
+        else if (hasConnectedBefore) {
+          try{
+            await logout();
+            console.log("logged out");
+          }
+          catch{
+            console.log("already logged out");
+          }
+        }
+      }
+  processUser();
+  }, [ connected ]);
+  return (
+    <>
+        <WalletMultiButton className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"/>
+    </>
+  );
+};
+
 
 export const Nav:FC= ({
     children
@@ -37,9 +93,7 @@ export const Nav:FC= ({
                     </div>
                   </div>
                 </div>
-                <a>
-                    <WalletMultiButton className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"/>
-                </a>
+                <SessionManager/>
                 <div className="-mr-2 flex md:hidden">
                 </div>
               </div>

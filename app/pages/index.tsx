@@ -4,6 +4,7 @@ export default function Index() {
   return (
     <>
       <Nav>
+        I'm appearing here
       </Nav>
     </>
   )
