@@ -3,6 +3,7 @@
 
 
 Stack
+- Node
 - Apollo Server with graphql
 - postgres(optional)
 - typeorm
