@@ -1,4 +1,4 @@
-# Code to bootstrap a web3 app with a web2 server backend with typescript
+# Code to bootstrap a web3 app + web2 server backend using typescript
 [Demo(Server-Not-Connected)](https://sosmo.vercel.app/)
 
 
