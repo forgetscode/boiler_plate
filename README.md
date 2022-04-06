@@ -5,9 +5,9 @@
 Stack
 - Node
 - Apollo Server with graphql
-- postgres(optional)
-- typeorm
-- expressJS
+- Postgres(optional)
+- Typeorm
+- ExpressJS
 - Redis
 
 App
