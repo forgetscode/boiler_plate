@@ -42,6 +42,8 @@ yarn watch creates a watcher to automatically re-run yarn dev when file changes 
 
 ## App folder
 
+Install dependancies
+
 >yarn install
   
 app client(port:3000)
