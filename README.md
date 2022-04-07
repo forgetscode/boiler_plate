@@ -1,5 +1,5 @@
 # Code to bootstrap a web3 app + web2 server backend using typescript
-[Demo(Server-Not-Connected)](https://sosmo.vercel.app/)
+[Demo(Made with this stack)](forgetspractice.com)
 
 
 Stack
